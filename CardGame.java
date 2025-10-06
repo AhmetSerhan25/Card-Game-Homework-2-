@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 // Cardgame
 // author: Esma Karakaya
-// date: 10/01/2025
+// date: 
 public class CardGame
 {
     // properties
@@ -18,8 +18,8 @@ public class CardGame
     // constructors
     public CardGame( Player p1, Player p2, Player p3, Player p4)
     {
-        Arraylist<Player> players = new ArrayList<Player>();
-        Cards[] cardsOnTable = new Cards[NOOFCARDSINFULLPACK];
+        players = new ArrayList<Player>();
+        ScoreCard scoreCard = new ScoreCard(4);
         roundNo = 0;
         players.add(p1);
         players.add(p2);
@@ -30,26 +30,35 @@ public class CardGame
     // methods
     public boolean playTurn( Player p, Card c)
     {
-        // Todo
+        if(p.playCard() == c){
+            return true;
+        }
         return false;
     }
     
     public boolean isTurnOf( Player p)
     {
-        // ToDo
+        if(p.getName().equals(getName(getTurnOfPlayerNo()))){
+            return true;
+        }
         return false;
     }
     
     public boolean isGameOver()
     {
-        // ToDo
-        return false;
+        boolean gameOver = false;
+
+        for(Player pl : players){
+            if(pl.playCard() == null){
+                gameOver = true;
+            }
+        }
+        return gameOver;
     }
     
     public int getScore( int playerNumber)
     {
-        // ToDo
-        return -1;
+        return scoreCard.getScore(playerNumber);
     }
     
     public String getName( int playerNumber)
@@ -57,9 +66,9 @@ public class CardGame
         boolean done = false;
         int index = 0;
         while(!done){
-            int currentPlayerNumber = players.get(index).charAt(1);
+            int currentPlayerNumber = players.get(index).getName().charAt(1);
             if(currentPlayerNumber == playerNumber){
-                return players.getName(index);
+                return players.get(index).getName();
             }
             index++;
             if(index > players.size()){
@@ -71,25 +80,30 @@ public class CardGame
     
     public int getRoundNo()
     {
-        //ToDo
-        return -1;
+        return roundNo;
     }
     
     public int getTurnOfPlayerNo()
     {
-        // ToDo
-        return -1;
+        return turnOfPlayer;
     }
     
     public Player[] getWinners()
     {
-        // ToDo
-        return null;
+        //if the player is winner than it have 1 for its index at int[] winnerArray
+        int[] winnerScores = scoreCard.getWinners();
+        Player[] winners;
+
+        for(int index = 0; index < players.size(); index++){
+            if(winnerScores[index] == 1){
+                winners[index] = players.get(index);
+            }
+        }
+        return winners;
     }
     
     public String showScoreCard()
     {
         return scoreCard.toString();
     }
-    
 }
