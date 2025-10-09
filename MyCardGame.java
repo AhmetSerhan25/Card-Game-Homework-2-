@@ -1,10 +1,11 @@
-import java.util.Scanner;
 import cardgame.*;
+import java.util.Scanner;
+
 
 // MyCardGame - provides a menu allowing any of the players to play their card,
 //              an option to see the score card, and one to quit the game at any time.
 //              When the game is over it dislays the winners.
-// author:
+// author: Ayşe Irmak Ceylan 
 // date:
 public class MyCardGame
 {
@@ -54,7 +55,7 @@ public class MyCardGame
             
             // ask for and get selection
             System.out.println();
-            System.out.println( "Selection (" + MENU_EXIT + " to exit): ");
+            System.out.print( "Selection (" + MENU_EXIT + " to exit): ");
             selection = scan.nextInt();
             
             // process selection
@@ -71,22 +72,28 @@ public class MyCardGame
                 play( p4, game);
             
             else if ( selection == MENU_SCORES )
-                // ToDo ~ System.out.println( game.showScoreCard() );
-                System.out.println( "ToDo..." );
-            
+                System.out.println( game.showScoreCard() );
+
             else if ( selection != MENU_EXIT)
                 System.out.println( "Invalid selection! \n" );
             
         } while ( selection != MENU_EXIT);
 
         // display winners...
-        // ToDo ~ game.isGameOver(); ? game.getWinners(); 
-        System.out.println( "ToDo..." );
+        if(game.isGameOver()) {
+            Player[] winners = game.getWinners();
+            System.out.println("\nGame over! Winners: ");
+            for(Player winner : winners) {
+                if(winner != null) {
+                    System.out.println(winner.getName());
+                }
+            }
+        }
         
         System.out.println( "\nEnd of MyCardGame\n" );   
+        scan.close();
     }
 
-    // ToDo...
     // get the card, c, that player p wants to play
     // pass c to the game, see if it accepted c from p
     // if game didn't accept the card, give c back to the player! 
@@ -96,7 +103,29 @@ public class MyCardGame
         Card       c;
         boolean    accepted;
         
-        accepted = false;  // ToDo...
+        // check it it's player' s turn
+        if(!game.isTurnOf(p)) {
+            System.out.println("It's not " + p.getName() + "'s turn! Current turn: Player " + game.getTurnOfPlayerNo() + 1);
+            return false;
+        }
+
+        // player plays a card
+        c = p.playCard();
+        if(c == null) {
+            System.out.println(p.getName() + " has no cards left!");
+            return false;
+        }
+
+        // try to play the card in the game
+        accepted = game.playTurn(p, c);
+
+        if(!accepted) {
+            // if not accepted, return card to player
+            p.add(c);
+            System.out.println("Invalid move! Card returned to " + p.getName());
+        } else {
+            System.out.println(p.getName() + "played: " + c);
+        }
 
         return accepted;
     }
