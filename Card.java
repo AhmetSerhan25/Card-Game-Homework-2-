@@ -1,3 +1,4 @@
+// author: Mustafa Efe Çil
 package cardgame;
 public class Card {
 public static final String[] SUITS = { "Hearts", "Diamonds", "Spades", "Clubs" };
@@ -25,4 +26,5 @@ public String getFaceName() { return FACES[faceValue]; }
 
 public String toString() { return getFaceName() + " of " + getSuitName(); }
 }
+
 
