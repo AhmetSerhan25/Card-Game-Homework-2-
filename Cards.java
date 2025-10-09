@@ -1,3 +1,4 @@
+// author: Mustafa Efe Çil
 package cardgame;
 import java.util.Random;
 
@@ -66,4 +67,5 @@ cards[j] = tmp;
 }
 }
 }
+
 
