@@ -1,3 +1,4 @@
+package cardgame;
 public class Card {
 public static final String[] SUITS = { "Hearts", "Diamonds", "Spades", "Clubs" };
 public static final String[] FACES = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
@@ -24,3 +25,4 @@ public String getFaceName() { return FACES[faceValue]; }
 
 public String toString() { return getFaceName() + " of " + getSuitName(); }
 }
+
