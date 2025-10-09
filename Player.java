@@ -1,7 +1,7 @@
 package cardgame;
 
 // Player - Simple card game player with name and hand of cards
-// author:
+// author: Enis Kağan Uysal
 // date:
 public class Player
 {
@@ -32,3 +32,4 @@ public class Player
     }
     
 } // end class Player
+
