@@ -2,34 +2,29 @@ package cardgame;
 
 // Player - Simple card game player with name and hand of cards
 // author: Enis Kağan Uysal
-// date:
-public class Player
-{
+// date:10.10.2025
+public class Player {
     // properties
     String name;
     Cards hand;
-    
+
     // constructors
-    public Player( String name)
-    {
-        this.name=name;
+    public Player(String name) {
+        this.name = name;
+        this.hand = new Cards();
     }
-    
+
     // methods
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
-    
-    public void add( Card c)
-    {
+
+    public void add(Card c) {
         hand.addTopCard(c);
     }
-    
-    public Card playCard()
-    {
+
+    public Card playCard() {
         return hand.getTopCard();
     }
-    
-} // end class Player
 
+} // end class Player
