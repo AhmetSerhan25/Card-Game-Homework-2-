@@ -31,10 +31,10 @@ public class MyCardGame
         // PROGRAM CODE
 
         // create players...
-        p1 = new Player( "p1");
-        p2 = new Player( "p2");
-        p3 = new Player( "p3");
-        p4 = new Player( "p4");
+        p1 = new Player( "Player 01");
+        p2 = new Player( "Player 02");
+        p3 = new Player( "Player 03");
+        p4 = new Player( "Player 04");
         
         // create game with the 4 players...
         game = new CardGame( p1, p2, p3, p4);
@@ -45,7 +45,7 @@ public class MyCardGame
             // display menu
             System.out.println();
             System.out.println( "MyCardGame   Round: " + game.getRoundNo() 
-                                 + "\t TurnOfPlayer: " + game.getTurnOfPlayerNo() );
+                                 + "\t TurnOfPlayer: " + (game.getTurnOfPlayerNo() + 1));
             System.out.println();
             System.out.println( MENU_PLAY_P1 + " - Player " + MENU_PLAY_P1 + " plays" );
             System.out.println( MENU_PLAY_P2 + " - Player " + MENU_PLAY_P2 + " plays" );
@@ -105,7 +105,7 @@ public class MyCardGame
         
         // check it it's player' s turn
         if(!game.isTurnOf(p)) {
-            System.out.println("It's not " + p.getName() + "'s turn! Current turn: Player " + game.getTurnOfPlayerNo() + 1);
+            System.out.println("It's not " + p.getName() + "'s turn! Current turn: Player " + game.getTurnOfPlayerNo());
             return false;
         }
 
@@ -124,7 +124,7 @@ public class MyCardGame
             p.add(c);
             System.out.println("Invalid move! Card returned to " + p.getName());
         } else {
-            System.out.println(p.getName() + "played: " + c);
+            System.out.println(p.getName() + " played: " + c);
         }
 
         return accepted;
